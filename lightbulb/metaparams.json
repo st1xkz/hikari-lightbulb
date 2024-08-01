@@ -7,9 +7,10 @@
     "optional": {
       "localize": "bool",
       "nsfw": "bool",
-      "dm_enabled": "bool",
       "default_member_permissions": "hikari.permissions.Permissions",
-      "hooks": "list[lightbulb.ExecutionHook]"
+      "hooks": "list[lightbulb.ExecutionHook]",
+      "integration_types": "list[hikari.applications.ApplicationIntegrationType]",
+      "contexts": "list[hikari.applications.ApplicationInstallationContextType]"
     }
   },
   "lightbulb.commands.commands.MessageCommand": {
@@ -19,9 +20,10 @@
     "optional": {
       "localize": "bool",
       "nsfw": "bool",
-      "dm_enabled": "bool",
       "default_member_permissions": "hikari.permissions.Permissions",
-      "hooks": "list[lightbulb.ExecutionHook]"
+      "hooks": "list[lightbulb.ExecutionHook]",
+      "integration_types": "list[hikari.applications.ApplicationIntegrationType]",
+      "contexts": "list[hikari.applications.ApplicationInstallationContextType]"
     }
   },
   "lightbulb.commands.commands.UserCommand": {
@@ -31,9 +33,10 @@
     "optional": {
       "localize": "bool",
       "nsfw": "bool",
-      "dm_enabled": "bool",
       "default_member_permissions": "hikari.permissions.Permissions",
-      "hooks": "list[lightbulb.ExecutionHook]"
+      "hooks": "list[lightbulb.ExecutionHook]",
+      "integration_types": "list[hikari.applications.ApplicationIntegrationType]",
+      "contexts": "list[hikari.applications.ApplicationInstallationContextType]"
     }
   }
 }

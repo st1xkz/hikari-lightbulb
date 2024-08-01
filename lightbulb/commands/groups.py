@@ -119,8 +119,9 @@ class SubGroup(GroupMixin):
             self.description,
             self.localize,
             self.parent.nsfw,
-            self.parent.dm_enabled,
             self.parent.default_member_permissions,
+            self.parent.integration_types,
+            self.parent.contexts,
             [],
             {},
             "",
@@ -184,12 +185,12 @@ class Group(GroupMixin):
     """Whether the group name and description should be localized."""
     nsfw: bool = dataclasses.field(repr=False, default=False)
     """Whether the group should be marked as nsfw. Defaults to :obj:`False`."""
-    dm_enabled: bool = dataclasses.field(repr=False, default=True)
-    """Whether the group is enabled in direct messages."""
     default_member_permissions: hikari.UndefinedOr[hikari.Permissions] = dataclasses.field(
         repr=False, default=hikari.UNDEFINED
     )
     """The default permissions required to use the group in a guild."""
+    integration_types: hikari.UndefinedOr[t.Sequence[hikari.ApplicationIntegrationType]] = dataclasses.field(repr=False, default=hikari.UNDEFINED)
+    contexts: hikari.UndefinedOr[t.Sequence[hikari.ApplicationInstallationContextType]] = dataclasses.field(repr=False, default=hikari.UNDEFINED)
 
     _commands: GroupCommandMappingT = dataclasses.field(init=False, hash=False, repr=False, default_factory=dict)
     _command_data: commands.CommandData = dataclasses.field(init=False, hash=False, repr=False)
@@ -201,8 +202,9 @@ class Group(GroupMixin):
             self.description,
             self.localize,
             self.nsfw,
-            self.dm_enabled,
             self.default_member_permissions,
+            self.integration_types,
+            self.contexts,
             [],
             {},
             "",
@@ -257,8 +259,9 @@ class Group(GroupMixin):
             .set_name_localizations(name_localizations)  # type: ignore[reportArgumentType]
             .set_description_localizations(description_localizations)  # type: ignore[reportArgumentType]
             .set_is_nsfw(self.nsfw)
-            .set_is_dm_enabled(self.dm_enabled)
             .set_default_member_permissions(self.default_member_permissions)
+            .set_integration_types(self.integration_types)
+            .set_contexts(self.contexts)
         )
 
         for command_or_group in self._commands.values():
